@@ -29,7 +29,18 @@ public class IdpServerEncryptionService implements InitializingBean {
 
     static final Integer IdpServerKeyDerivativeCount = 65521;
 
-    static final Integer IdpServerKeyLength = 256;
+    // TODO once this is working with 128 bits, figure out how to use with 256+
+    // bit keys by adding unlimited strenght jar file to GAE docker
+    // customization
+    static final Integer IdpServerKeyLength = 128;
+
+    static final String IdpServerEncryptionKeyPassPhraseCurr = "idp.service.encryption.pass.phrase.curr";
+
+    static final String IdpServerEncryptionKeyVersionCurr = "idp.service.encryption.key.ver.curr";
+
+    static final String IdpServerEncryptionKeyPassPhraseLast = "idp.service.encryption.pass.phrase.last";
+
+    static final String IdpServerEncryptionKeyVersionLast = "idp.service.encryption.key.ver.last";
 
     private char[] currIdpServerPassPhrase = null;
 
@@ -52,13 +63,13 @@ public class IdpServerEncryptionService implements InitializingBean {
     DaoServerEncryptionService cryptoDao;
 
     private void initialize() {
-        currIdpServerPassPhrase = env.getProperty("idp.service.encryption.pass.phrase.curr").toCharArray();
+        currIdpServerPassPhrase = env.getProperty(IdpServerEncryptionKeyPassPhraseCurr).toCharArray();
         assert (currIdpServerPassPhrase != null);
-        currIdpServerKeyVersion = Integer.decode(env.getProperty("idp.service.encryption.key.ver.curr"));
+        currIdpServerKeyVersion = Integer.decode(env.getProperty(IdpServerEncryptionKeyVersionCurr));
         assert (currIdpServerKeyVersion != null);
-        String tmpStr = env.getProperty("idp.service.encryption.pass.phrase.last");
+        String tmpStr = env.getProperty(IdpServerEncryptionKeyPassPhraseLast);
         lastIdpServerPassPhrase = tmpStr == null ? null : tmpStr.toCharArray();
-        tmpStr = env.getProperty("idp.service.encryption.key.ver.last");
+        tmpStr = env.getProperty(IdpServerEncryptionKeyVersionLast);
         lastIdpServerKeyVersion = tmpStr == null ? null : Integer.decode(tmpStr);
     }
 
