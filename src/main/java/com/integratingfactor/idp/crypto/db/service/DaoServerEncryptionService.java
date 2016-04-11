@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.integratingfactor.crypto.lib.factory.model.IdpEncrypted;
 import com.integratingfactor.crypto.lib.factory.model.IdpWrappedKeySpec;
-import com.integratingfactor.idp.common.exceptions.db.DbException;
+import com.integratingfactor.idp.common.db.exceptions.DbException;
 
 public interface DaoServerEncryptionService {
 

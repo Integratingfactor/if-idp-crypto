@@ -28,8 +28,8 @@ import com.integratingfactor.crypto.lib.factory.model.IdpEncrypted;
 import com.integratingfactor.crypto.lib.factory.model.IdpWrappedKeySpec;
 import com.integratingfactor.crypto.lib.factory.service.IdpCryptoFactory;
 import com.integratingfactor.crypto.lib.factory.specs.IdpSecretKeySpec;
-import com.integratingfactor.idp.common.exceptions.db.DbException;
-import com.integratingfactor.idp.common.exceptions.db.NotFoundDbException;
+import com.integratingfactor.idp.common.db.exceptions.DbException;
+import com.integratingfactor.idp.common.db.exceptions.NotFoundDbException;
 import com.integratingfactor.idp.crypto.db.service.DaoServerEncryptionService;
 
 @ContextConfiguration(classes = { IdpServerEncryptionServiceTestConfig.class })
